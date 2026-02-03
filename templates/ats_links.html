@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ATS Websites</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='atss.css') }}" />
+</head>
+<body>
+  <div class="container">
+    <h1 style="text-align: center; font-weight: bold; color: rgb(6, 5, 5);">Applicant Tracking Systems (ATS)</h1>
+    <p style="text-align: center; font-weight: bold; color: rgb(176, 57, 249)(55, 255, 255);">
+      Popular platforms companies use to manage hiring.The Website links can be changed by official company developers anytime. I just shared sample links.</p>
+
+    <div class="card-grid">
+      {% for ats in ats_systems %}
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <!-- Front -->
+          <div class="flip-card-front">
+            <h3>{{ ats.name }}</h3>
+            <div class="reload-icon" onclick="flipCard(this)">🔁</div>
+          </div>
+          <!-- Back -->
+          <div class="flip-card-back">
+            <ul>
+              <li><a href="https://{{ ats.domain }}" target="_blank">Official Website</a></li>
+              <li><a href="https://{{ ats.domain }}/careers" target="_blank">Careers Page</a></li>
+              <li><a href="https://linkedin.com/company/{{ ats.linkedin }}" target="_blank">LinkedIn Page</a></li>
+            </ul>
+            <div class="reload-icon back" onclick="flipCard(this)">🔁</div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+   <br><br>
+    <div style="text-align: center; margin-top: 30px;">
+      <a href="{{ url_for('index') }}" class="back-button">← Back to Search</a>
+    </div>
+  </div>
+
+  <script>
+    function flipCard(iconElement) {
+      const card = iconElement.closest('.flip-card');
+      card.classList.toggle('flipped');
+    }
+  </script>
+</body>
+</html>

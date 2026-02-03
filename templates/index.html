@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Company Official Pages</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <br><br>
+  <div class="container">
+    <h1>Search Official Company names</h1>
+    <form method="POST">
+      <div class="search-box">
+        <!-- Force input to be empty unless actively searching -->
+        <input
+          type="text"
+          name="company_name"
+          placeholder="Enter company name"
+          autocomplete="off"
+          value=""  <!-- 🔥 This ensures it's always empty on load/refresh -->
+         </input>
+        <button type="submit" name="action" value="search">🔍 Search</button>
+      </div>
+
+      <div class="controls">
+        <button type="submit" name="action" value="refresh" class="refresh-btn">🔄 Refresh</button>
+      </div>
+    </form>
+  
+    {% if results %}
+    <div class="google-results">
+      <a href="{{ results.company }}" target="_blank" class="result-box">
+        <div class="result-title">{{ company_name|title }} - Official Website</div>
+        <div class="result-url">Search on Google</div>
+        <div class="result-snippet">Official website and services.</div>
+      </a>
+      <a href="{{ results.careers }}" target="_blank" class="result-box">
+        <div class="result-title">Careers at {{ company_name|title }}</div>
+        <div class="result-url">Search on Google</div>
+        <div class="result-snippet">View open roles and apply.</div>
+      </a>
+      <a href="{{ results.linkedin }}" target="_blank" class="result-box">
+        <div class="result-title">{{ company_name|title }} on LinkedIn</div>
+        <div class="result-url">Search on Google</div>
+        <div class="result-snippet">Official LinkedIn profile.</div>
+      </a>
+    </div>
+    {% endif %}
+  </div>
+  <br><br>
+    <p style="text-align: center; font-weight: bold; color: rgb(6, 3, 5);">
+      I tried to create Company official page finder using Google search. I know it is crazy project as We already have AI and Google Search.</p>
+    <p style="text-align: center; font-weight: bold; color: rgb(6,3,5);">
+      The Website links can be changed by official company developers anytime. I hoped job candidates and normal users </p> 
+    <p style="text-align: center; font-weight: bold; color: rgb(6,3,5);">
+      to search their company names . 
+    </p>
+    <br><br>
+<!-- Two Info Cards -->
+<div class="info-cards">
+  <a href="{{ url_for('company_links') }}" class="info-card">
+    <div class="card-title">Example Company Links</div>
+    <div class="card-desc">View sample company official pages</div>
+  </a>
+  <a href="{{ url_for('ats_links') }}" class="info-card">
+    <div class="card-title">ATS Websites</div>
+    <div class="card-desc">Popular Applicant Tracking Systems</div>
+  </a>
+</div>
+</body>
+</html>
